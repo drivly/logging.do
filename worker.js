@@ -26,7 +26,7 @@ export class Logger {
       return new Response(JSON.stringify({ 
         api,
         list,
-      }, null, 2), { headers: { 'content-type': 'application/json' } })
+      }, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' } })
     }
     const [level, message] = pathname.split('/')
     const params = Object.fromEntries(searchParams)
@@ -40,6 +40,6 @@ export class Logger {
     return new Response(JSON.stringify({ 
       api,
       logged,
-    }, null, 2), { headers: { 'content-type': 'application/json' } })
+    }, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' } })
   }
 }
