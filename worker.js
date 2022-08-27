@@ -1,9 +1,9 @@
 
 export default {
-  fetch: (req, env) => env.COUNTER.get(env.COUNTER.idFromName(new URL(req.url).hostname)).fetch(req)
+  fetch: (req, env) => env.LOGGER.get(env.LOGGER.idFromName(new URL(req.url).hostname)).fetch(req)
 }
 
-export class LOGGER {
+export class Logger {
   constructor(state, env) {
     this.state = state
   }
