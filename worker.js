@@ -22,7 +22,7 @@ export class Logger {
   async fetch(req) {
     const { origin, hostname, pathname, searchParams } = new URL(req.url)
     if (pathname == '/api') {
-      const list = await this.state.storage.list()
+      const list = await this.state.storage.list().then(list => Object.fromEntries(list))
       return new Response(JSON.stringify({ 
         api,
         list,
