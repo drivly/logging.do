@@ -27,6 +27,13 @@ export class Logger {
         api,
         list,
       }, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' } })
+    } else if (pathname.startsWith('/api/')) {
+      const [id] = pathname.split('/api/')
+      const event = await this.state.storage.get(id).then(list => Object.fromEntries(list))
+      return new Response(JSON.stringify({ 
+        api,
+        event,
+      }, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' } })
     }
     const [level, message] = pathname.split('/')
     const params = Object.fromEntries(searchParams)
