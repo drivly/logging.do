@@ -21,7 +21,7 @@ export class Logger {
       memberOf: 'https://primitives.do',
     }
     if (pathname == '/api') {
-      const list = await this.state.storage.list({reverse: true}).then(list => Object.fromEntries(list))
+      const list = await this.state.storage.list({reverse: true, limit: 10}).then(list => Object.fromEntries(list))
       return new Response(JSON.stringify({ 
         api,
         list,
