@@ -37,7 +37,7 @@ export class Logger {
         event,
       }, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' } })
     }
-    const [level, message] = pathname.split('/')
+    const [level = null, message = null] = pathname.split('/')
     const params = Object.fromEntries(searchParams)
     const data = req.json().catch(ex => undefined)
     const ts = Date.now()
@@ -45,7 +45,7 @@ export class Logger {
     const id = req.headers.get('cf-ray')
     const url = origin + '/api/' + id
     const logged =  { id, url, hostname, level, message, params, data, ts, time }
-    await this.state.storage.put(id, { id, url, hostname })
+    await this.state.storage.put(id, { id, url, hostname, level })
     return new Response(JSON.stringify({ 
       api,
       logged,
