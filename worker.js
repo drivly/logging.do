@@ -4,8 +4,8 @@ const api = {
   description: 'Logging-as-a-Service API',
   url: 'https://logging.do',
   endpoints: {
-    getLoggedEvents: 'https://logging.do/api',
-    getLoggedEvent: 'https://logging.do/api/:eventId',
+    getLogs: 'https://logging.do/api',
+    getEvent: 'https://logging.do/api/:eventId',
     logEvent: 'https://logging.do/:level/:message',
   },
   memberOf: 'https://primitives.do',
