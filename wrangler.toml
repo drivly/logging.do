@@ -5,7 +5,6 @@ main = "worker.js"
 usage_model = "unbound"
 compatibility_date = "2022-08-27"
 
-
 [durable_objects]
 bindings = [{name = "LOGGER", class_name = "Logger"}]
 
