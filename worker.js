@@ -39,7 +39,7 @@ export class Logger {
     }
     const [level = null, message = null] = pathname.split('/')
     const params = Object.fromEntries(searchParams)
-    const data = req.json().catch(ex => null)
+    const data = req.body ? req.json() : null
     const ts = Date.now()
     const time = new Date(ts).toISOString()
     const id = req.headers.get('cf-ray')
