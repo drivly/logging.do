@@ -45,7 +45,7 @@ export class Logger {
     const id = req.headers.get('cf-ray')
     const url = origin + '/api/' + id
     const logged =  { id, url, hostname, level, message, params, data, ts, time }
-    await this.state.storage.put(id, { id, url, hostname, level, message, params, })
+    await this.state.storage.put(id, { id, url, hostname, level, message, params, data, ts, time })
     return new Response(JSON.stringify({ 
       api,
       logged,
