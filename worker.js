@@ -34,7 +34,7 @@ export class Logger {
       return new Response(JSON.stringify({ 
         api,
         id,
-        event,
+//         event,
       }, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' } })
     }
     const [level, message] = pathname.split('/')
