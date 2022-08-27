@@ -1,0 +1,14 @@
+name = "logging-do"
+account_id = "b6641681fe423910342b9ffa1364c76d"
+route = { pattern = "*/*", zone_id = "ece7d6d45d1e9be70f89c182f8a207ae" }
+main = "worker.js"
+usage_model = "unbound"
+compatibility_date = "2022-08-27"
+
+
+[durable_objects]
+bindings = [{name = "LOGGER", class_name = "Logger"}]
+
+[[migrations]]
+tag = "v1" # Should be unique for each entry
+new_classes = ["Logger"]
