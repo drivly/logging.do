@@ -20,7 +20,7 @@ export class Logger {
     this.state = state
   }
   async fetch(req) {
-    const { origin, hostname, pathname, searchParams } = new URL(req.url)
+    const { origin, hostname, pathname, search, searchParams } = new URL(req.url)
     if (pathname == '/api') {
       const list = await this.state.storage.list().then(list => Object.fromEntries(list))
       return new Response(JSON.stringify({ 
@@ -39,13 +39,13 @@ export class Logger {
     }
     const [level = null, message = null] = pathname.split('/')
     const params = Object.fromEntries(searchParams)
-    const data = req.json().catch(ex => undefined)
+    const data = req.json().catch(ex => null)
     const ts = Date.now()
     const time = new Date(ts).toISOString()
     const id = req.headers.get('cf-ray')
     const url = origin + '/api/' + id
     const logged =  { id, url, hostname, level, message, params, data, ts, time }
-    await this.state.storage.put(id, { id, url, hostname, level })
+    await this.state.storage.put(id, { id, url, hostname, level, message, params, })
     return new Response(JSON.stringify({ 
       api,
       logged,
