@@ -21,9 +21,10 @@ export class Logger {
   async fetch(req) {
     const { origin, hostname, pathname, searchParams } = new URL(req.url)
     if (pathname == '/api/') {
+      const list = this.state.storage.list()
       return new Response(JSON.stringify({ 
         api,
-        logged,
+        list,
       }, null, 2), { headers: { 'content-type': 'application/json' } })
     }
     const [level, message] = pathname.split('/')
