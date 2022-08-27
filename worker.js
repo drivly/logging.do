@@ -5,6 +5,7 @@ const api = {
   url: 'https://logging.do',
   endpoints: {
     getLoggedEvents: 'https://logging.do/api',
+    getLoggedEvent: 'https://logging.do/api/:eventId',
     logEvent: 'https://logging.do/:level/:message',
   },
   memberOf: 'https://primitives.do',
@@ -20,8 +21,8 @@ export class Logger {
   }
   async fetch(req) {
     const { origin, hostname, pathname, searchParams } = new URL(req.url)
-    if (pathname == '/api/') {
-      const list = this.state.storage.list()
+    if (pathname == '/api') {
+      const list = await this.state.storage.list()
       return new Response(JSON.stringify({ 
         api,
         list,
