@@ -1,17 +1,4 @@
-const api = {
-  icon: '📕',
-  name: 'Logging.do',
-  description: 'Logging-as-a-Service API',
-  url: 'https://logging.do',
-  endpoints: {
-    getLogs: 'https://logging.do/api',
-    getEvent: 'https://logging.do/api/:eventId',
-    logEvent: 'https://logging.do/:level/:message',
-  },
-  memberOf: 'https://primitives.do',
-}
-  
-export default {
+ export default {
   fetch: (req, env) => env.LOGGER.get(env.LOGGER.idFromName(new URL(req.url).hostname)).fetch(req)
 }
 
@@ -21,6 +8,18 @@ export class Logger {
   }
   async fetch(req) {
     const { origin, hostname, pathname, search, searchParams } = new URL(req.url)
+    const api = {
+      icon: '📕',
+      name: 'Logging.do',
+      description: 'Logging-as-a-Service API',
+      url: 'https://logging.do',
+      endpoints: {
+        getLogs: origin + '/api',
+        getEvent: origin + '/api/:eventId',
+        logEvent: origin + '/:level/:message',
+      },
+      memberOf: 'https://primitives.do',
+    }
     if (pathname == '/api') {
       const list = await this.state.storage.list({reverse: true}).then(list => Object.fromEntries(list))
       return new Response(JSON.stringify({ 
