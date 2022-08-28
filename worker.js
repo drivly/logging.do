@@ -36,7 +36,7 @@ export class Logger {
         event,
       }, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' } })
     }
-    const [level = null, message = null] = pathname.split('/')
+    const [_,level = null, message = null] = pathname.split('/')
     const params = Object.fromEntries(searchParams)
     const data = req.body ? req.json() : null
     const ts = Date.now()
