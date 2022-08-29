@@ -39,7 +39,7 @@ export class Logger {
     const [_,level = null, message = null] = pathname.split('/')
     const params = Object.fromEntries(searchParams)
     const data = req.body ? req.json() : null
-    const ts = Date.now()
+    const ts = Date.UTC()
     const time = new Date(ts).toISOString()
     const id = req.headers.get('cf-ray')
     const url = origin + '/api/' + id
