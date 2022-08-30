@@ -22,7 +22,7 @@ export class Logger {
     }
     if (pathname == '/api') {
       // const list = await this.state.storage.list({reverse: true, limit: 10}).then(list => Object.fromEntries(list))
-      const list = await this.state.storage.list({reverse: true, limit: 10}).then(list => ({...[...list]}))
+      const list = await this.state.storage.list({reverse: true, limit: 10}).then(list => [...list])
       return new Response(JSON.stringify({ 
         api,
         list,
