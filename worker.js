@@ -9,8 +9,7 @@ export class Logger {
   async fetch(req) {
     const { user, redirect, body } = await env.CTX.fetch(req).then(res => res.json())
     if (redirect) return Response.redirect(redirect)
-    
-    const { origin, pathname, search } = new URL(req.url)
+
     const { origin, hostname, pathname, search, searchParams } = new URL(req.url)
     const api = {
       icon: '📕',
