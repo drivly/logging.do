@@ -7,6 +7,10 @@ export class Logger {
     this.state = state
   }
   async fetch(req) {
+    const { user, redirect, body } = await env.CTX.fetch(req).then(res => res.json())
+    if (redirect) return Response.redirect(redirect)
+    
+    const { origin, pathname, search } = new URL(req.url)
     const { origin, hostname, pathname, search, searchParams } = new URL(req.url)
     const api = {
       icon: '📕',
@@ -39,7 +43,7 @@ export class Logger {
     }
     const [_,level = null, message = null] = pathname.split('/')
     const params = Object.fromEntries(searchParams)
-    const data = req.body ? req.json() : null
+    const data = body
     const ts = Date.now()
     const time = new Date(ts).toISOString()
     const id = req.headers.get('cf-ray')
@@ -49,6 +53,7 @@ export class Logger {
     return new Response(JSON.stringify({ 
       api,
       logged,
+      user,
     }, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' } })
   }
 }
