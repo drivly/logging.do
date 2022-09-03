@@ -24,7 +24,7 @@ export class Logger {
         logEvent: origin + '/:level/:message',
       },
       type: 'https://apis.do',
-      repo: 'https://github.com/drivly/query.do',
+      repo: 'https://github.com/drivly/logging.do',
     }
     if (pathname == '/api') {
       // const list = await this.state.storage.list({reverse: true, limit: 10}).then(list => Object.fromEntries(list))
