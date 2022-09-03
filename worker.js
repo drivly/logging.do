@@ -17,12 +17,14 @@ export class Logger {
       name: 'Logging.do',
       description: 'Logging-as-a-Service API',
       url: 'https://logging.do',
+      api: 'https://logging.do/api',
       endpoints: {
         getLogs: origin + '/api',
         getEvent: origin + '/api/:eventId',
         logEvent: origin + '/:level/:message',
       },
-      memberOf: 'https://primitives.do',
+      type: 'https://apis.do',
+      repo: 'https://github.com/drivly/query.do',
     }
     if (pathname == '/api') {
       // const list = await this.state.storage.list({reverse: true, limit: 10}).then(list => Object.fromEntries(list))
