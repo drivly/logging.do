@@ -1,4 +1,4 @@
- export default {
+export default {
   fetch: (req, env) => env.LOGGER.get(env.LOGGER.idFromName(new URL(req.url).hostname)).fetch(req)
 }
 
