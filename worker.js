@@ -32,6 +32,7 @@ export class Logger {
       return new Response(JSON.stringify({ 
         api,
         list,
+        user,
       }, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' } })
     } else if (pathname.startsWith('/api/')) {
       const [_,id] = pathname.split('/api/')
@@ -41,6 +42,7 @@ export class Logger {
         api,
         id,
         event,
+        user,
       }, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' } })
     }
     const [_,level = null, message = null] = pathname.split('/')
@@ -50,7 +52,7 @@ export class Logger {
     const time = new Date(ts).toISOString()
     const id = req.headers.get('cf-ray')
     const url = origin + '/api/' + id
-    const logged =  { id, url, hostname, level, message, params, data, ts, time }
+    const logged =  { id, url, hostname, level, message, params, data, ts, time, user }
     await this.state.storage.put(id, logged)
     return new Response(JSON.stringify({ 
       api,
